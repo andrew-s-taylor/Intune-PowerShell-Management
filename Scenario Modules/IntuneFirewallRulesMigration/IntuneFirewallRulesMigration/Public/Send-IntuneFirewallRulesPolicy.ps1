@@ -31,7 +31,7 @@ Function Send-IntuneFirewallRulesPolicy {
     Any attributes that have null or empty string values are filtered out from being sent to Graph. This is because
     the Graph can insert default values when no set values have been placed in the payload.
 
-    Users should authenticate themselves through the SDK first by running Connect-MSGraph, which will then allow
+    Users should authenticate themselves through the SDK first by running Connect-MgGraph, which will then allow
     them to use this cmdlet.
 
     .LINK
@@ -97,7 +97,7 @@ Function Send-IntuneFirewallRulesPolicy {
                    }"
             If ($PSCmdlet.ShouldProcess($NewIntuneObject, $Strings.SendIntuneFirewallRulesPolicyShouldSendData)) {
                 Try {
-                    Invoke-MSGraphRequest -Url 'https://graph.microsoft.com/beta/devicemanagement/deviceconfigurations/' -HttpMethod POST -Content $NewIntuneObject
+                    Invoke-MgGraphRequest -Uri 'https://graph.microsoft.com/beta/devicemanagement/deviceconfigurations/' -method POST -Content $NewIntuneObject -OutputType PSObject
                     # Profile numbers will only increment if they are actually sent to Intune
                     $profileNumber++
                 }
